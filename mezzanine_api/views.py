@@ -220,8 +220,9 @@ class PostViewSet(mixins.CreateModelMixin,
     filterset_class = PostFilter
     ordering_fields = ('id', 'title', 'publish_date', 'updated', 'user',)
     ordering = ('-publish_date',)
-    search_fields = ('title', 'content',)
-
+    #search_fields = ('title', 'content',)
+    search_fields = ('title', )
+    
     def get_serializer_class(self):
         if self.request.method in ('PUT', 'PATCH'):
             return PostUpdateSerializer
