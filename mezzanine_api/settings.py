@@ -29,6 +29,13 @@ Otherwise, for general information and examples, consult the
 The <a href="http://gcushen.github.io/mezzanine-api/client/" target="_blank">API Client SDK</a> and
 <a href="../oauth2/applications/">OAuth App Manager</a> are available for app development.
 """
+#By adding "default_schema_class" it worked for me.
+#REST_FRAMEWORK = {
+#...
+#'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+#}
+#AttributeError at /api/docs/ -> 'AutoSchema' object has no attribute 'get_link'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -38,6 +45,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 OAUTH2_PROVIDER = {

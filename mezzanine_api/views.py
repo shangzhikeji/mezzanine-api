@@ -213,7 +213,8 @@ class PostViewSet(mixins.CreateModelMixin,
               description: Page number
               paramType: query
     """
-    queryset = Post.objects.filter(status=2)
+
+    queryset = Post.objects.filter(status=2).defer("content")
     pagination_class = PostPagination
     permission_classes = [IsAdminOrReadOnly]  # IsAppAuthenticated
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter,)
